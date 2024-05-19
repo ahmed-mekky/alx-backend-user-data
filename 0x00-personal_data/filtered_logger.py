@@ -4,9 +4,11 @@ python file
 """
 import re
 from typing import List
+s = str
+ls = List[s]
 
 
-def filter_datum(fields: List[str], redaction: str, message: str, separator: str) -> str:
+def filter_datum(fields: ls, redaction: s, message: s, separator: s) -> str:
     """returns the log message obfuscated"""
     for field in fields:
         reg = rf'{field}=[^{separator}]+'
