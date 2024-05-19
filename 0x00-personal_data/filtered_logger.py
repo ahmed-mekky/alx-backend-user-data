@@ -37,14 +37,15 @@ def filter_datum(fields: ls, redaction: s, message: s, separator: s) -> str:
         message = re.sub(reg, f'{field}={redaction}', message)
     return message
 
+
 def get_logger() -> logging.Logger:
     """returns a logging object"""
     logger = logging.getLogger('user_data')
     logger.setLevel(logging.INFO)
     logger.propagate = False
     handler = logging.StreamHandler()
-    formatter = RedactingFormatter(fields=("name", "email", "phone", "ssn", "password"))
+    formatter = RedactingFormatter(
+        fields=("name", "email", "phone", "ssn", "password"))
     handler.setFormatter(formatter)
     logger.addHandler(handler)
     return logger
-
