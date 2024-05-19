@@ -8,6 +8,7 @@ from typing import List
 import logging
 s = str
 ls = List[s]
+PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
 
 class RedactingFormatter(logging.Formatter):
@@ -46,3 +47,4 @@ def get_logger() -> logging.Logger:
     handler.setFormatter(formatter)
     logger.addHandler(handler)
     return logger
+
