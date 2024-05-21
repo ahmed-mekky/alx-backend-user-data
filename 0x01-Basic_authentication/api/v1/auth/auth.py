@@ -2,7 +2,7 @@
 """
 Module for the Auth class
 """
-from flask import request
+from flask import request as req
 from typing import List, TypeVar
 
 
@@ -26,7 +26,10 @@ class Auth:
 
     def authorization_header(self, request=None) -> str:
         """class method"""
-        return None
+        header = request.headers.get('Authorization')
+        if not header or request is None:
+            return None
+        return header
 
     def current_user(self, request=None) -> User:
         """class method"""
