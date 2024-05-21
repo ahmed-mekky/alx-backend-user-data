@@ -21,9 +21,9 @@ class Auth:
             if excluded_path[-1] == '*':
                 if excluded_path[:-1] in path:
                     return False
-            elif path != excluded_path and path != excluded_path[:-1]:
-                return True
-        return False
+            if path in excluded_path:
+                return False
+        return True
 
     def authorization_header(self, request=None) -> str:
         """class method"""
