@@ -48,8 +48,6 @@ class BasicAuth(Auth):
         """function to get user_object"""
         if type(user_email) != str or type(user_pwd) != str:
             return None
-        if not User.all():
-            return None
         users = User.search({'email': user_email})
         if users:
             user = users[0]
