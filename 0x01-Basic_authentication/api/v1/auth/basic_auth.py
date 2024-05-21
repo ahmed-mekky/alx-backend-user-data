@@ -38,7 +38,7 @@ class BasicAuth(Auth):
         """function to extract_user_credentials"""
         if type(decoded_base64_authorization_header) != str:
             return (None, None)
-        base64_header = str(decoded_base64_authorization_header).split(':')
+        base64_header = str(decoded_base64_authorization_header).split(':', 1)
         if len(base64_header) < 2:
             return (None, None)
         return (base64_header[0], base64_header[1])
