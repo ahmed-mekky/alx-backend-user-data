@@ -46,9 +46,10 @@ class BasicAuth(Auth):
     def user_object_from_credentials(
             self, user_email: str, user_pwd: str) -> TypeVar('User'):
         """function to get user_object"""
+        from models.base import DATA
         if type(user_email) != str or type(user_pwd) != str:
             return None
-        if not User.load_from_file():
+        if not 'User' in DATA.keys():
             return None
         users = User.search({'email': user_email})
         if users:
