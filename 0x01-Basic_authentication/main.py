@@ -1,9 +1,9 @@
-""" Main 0
-"""
-from api.v1.auth.auth import Auth
+from api.v1.auth.basic_auth import BasicAuth
 
-a = Auth()
+ba = BasicAuth()
+res = ba.user_object_from_credentials("u1@gmail.com", "pwd")
+if res is not None:
+    print("user_object_from_credentials must return None if 'user_email' is not linked to any user")
+    exit(1)
 
-print(a.require_auth("/api/v1/status/", ["/api/v1/status/"]))
-print(a.authorization_header())
-print(a.current_user())
+print("OK", end="")
