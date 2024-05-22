@@ -49,8 +49,6 @@ class BasicAuth(Auth):
         from models.base import DATA
         if type(user_email) != str or type(user_pwd) != str:
             return None
-        if not 'User' in DATA.keys():
-            return None
         users = User.search({'email': user_email})
         if users:
             for user in users:
