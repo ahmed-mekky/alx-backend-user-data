@@ -8,7 +8,8 @@ from os import getenv
 
 
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
-def view_all_users() -> str:
+def login() -> str:
+    """logs a user"""
     """ POST /api/v1/auth_session/login """
     from api.v1.app import auth
 
