@@ -43,4 +43,3 @@ class Auth:
             return request
         from os import getenv
         return request.cookies.get(getenv('SESSION_NAME'))
-    
