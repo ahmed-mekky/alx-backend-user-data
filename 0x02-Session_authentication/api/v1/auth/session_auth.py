@@ -26,5 +26,7 @@ class SessionAuth (Auth):
 
     def current_user(self, request=None):
         """overloads current_user in auth bla bla bla"""
-        cookie = self.session_cookie()
-        return self.user_id_for_session_id(cookie)
+        from models.user import User
+        cookie = self.session_cookie(request)
+        user_id = self.user_id_for_session_id(cookie)
+        return User.get(user_id)
