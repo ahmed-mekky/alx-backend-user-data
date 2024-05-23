@@ -6,7 +6,7 @@ from .auth import Auth
 from uuid import uuid4
 
 
-class SessionAuth (Auth):
+class SessionAuth(Auth):
     """Basic auth class"""
     user_id_by_session_id = {}
 
