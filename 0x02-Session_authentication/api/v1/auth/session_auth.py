@@ -28,4 +28,3 @@ class SessionAuth (Auth):
         """overloads current_user in auth bla bla bla"""
         cookie = self.session_cookie()
         return self.user_id_for_session_id(cookie)
-
