@@ -5,6 +5,7 @@ Module for the SessionAuth  class
 from .session_exp_auth import SessionExpAuth
 from os import getenv
 from models.user_session import UserSession
+from datetime import timedelta, datetime
 
 
 class SessionDBAuth(SessionExpAuth):
@@ -23,10 +24,20 @@ class SessionDBAuth(SessionExpAuth):
         """same as before but with duration"""
         if not session_id:
             return None
-        user_session = UserSession.search({'session_id': session_id})
-        if not user_session:
+        user_sessions = UserSession.search({'session_id': session_id})
+        if not user_sessions:
             return None
-        return user_session[0].user_id
+
+        user_session = user_sessions[0]
+        created_at = user_session.created_at
+        user_id = user_session.user_id
+        duration_sec = timedelta(seconds=self.session_duration)
+
+        if self.session_duration <= 0 or not self.session_duration:
+            return user_id
+        if created_at + duration_sec < datetime.now():
+            return None
+        return user_id
 
     def destroy_session(self, request=None):
         """random func"""
