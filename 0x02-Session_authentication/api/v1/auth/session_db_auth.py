@@ -21,8 +21,12 @@ class SessionDBAuth(SessionExpAuth):
 
     def user_id_for_session_id(self, session_id=None):
         """same as before but with duration"""
+        if not session_id:
+            return None
         user_session = UserSession.search({'session_id': session_id})[0]
-        return user_session.user_id
+        if not user_session:
+            return None
+        return user_session[0].user_id
 
     def destroy_session(self, request=None):
         """random func"""
