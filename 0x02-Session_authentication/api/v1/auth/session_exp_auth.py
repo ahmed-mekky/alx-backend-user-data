@@ -14,13 +14,14 @@ class SessionExpAuth(SessionAuth):
 
     def create_session(self, user_id=None):
         """creating a session aaaaa"""
-        session_id = super()
+        session_id = super().create_session(user_id)
         if not session_id:
             return None
         self.user_id_by_session_id[session_id] = {
             'user_id': user_id,
             'created_at': datetime.now()
         }
+        return session_id
 
     def user_id_for_session_id(self, session_id=None):
         """same as before but with duration"""
@@ -33,9 +34,9 @@ class SessionExpAuth(SessionAuth):
 
         created_at = self.user_id_by_session_id[session_id]['created_at']
         user_id = self.user_id_by_session_id[session_id]['user_id']
-        duration_sec = timedelta(seconds=self.session_duration)
+        duration_sec = timedelta(seconds=int(self.session_duration))
 
-        if self.session_duration <= 0:
+        if int(self.session_duration) <= 0:
             return user_id
         if created_at + duration_sec < datetime.now():
             return None
