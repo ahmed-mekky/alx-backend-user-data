@@ -23,7 +23,7 @@ class SessionDBAuth(SessionExpAuth):
         """same as before but with duration"""
         if not session_id:
             return None
-        user_session = UserSession.search({'session_id': session_id})[0]
+        user_session = UserSession.search({'session_id': session_id})
         if not user_session:
             return None
         return user_session[0].user_id
