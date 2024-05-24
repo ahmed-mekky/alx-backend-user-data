@@ -33,3 +33,4 @@ class SessionDBAuth(SessionExpAuth):
         session_id = request.cookies.get(getenv('SESSION_NAME'))
         user_session = UserSession.search({'session_id': session_id})[0]
         user_session.remove()
+        return True
