@@ -9,7 +9,6 @@ from os import getenv
 
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def login() -> str:
-    """logs a user"""
     """ POST /api/v1/auth_session/login """
     from api.v1.app import auth
 
@@ -32,6 +31,7 @@ def login() -> str:
 
 @app_views.route('/auth_session/logout', methods=['DELETE'], strict_slashes=False)
 def logout() -> str:
+    """ DELETE /api/v1/auth_session/logout """
     from api.v1.app import auth
 
     if not auth.destroy_session(request):
