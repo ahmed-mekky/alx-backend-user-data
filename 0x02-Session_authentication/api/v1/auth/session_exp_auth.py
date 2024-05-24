@@ -26,16 +26,17 @@ class SessionExpAuth(SessionAuth):
         """same as before but with duration"""
         if not session_id:
             return None
-        elif not session_id in self.user_id_by_session_id.keys():
+        elif session_id not in self.user_id_by_session_id.keys():
             return None
-        elif not 'created_at' in self.user_id_by_session_id[session_id].keys():
+        elif 'created_at' not in self.user_id_by_session_id[session_id].keys():
             return None
 
         created_at = self.user_id_by_session_id[session_id]['created_at']
         user_id = self.user_id_by_session_id[session_id]['user_id']
+        duration_sec = timedelta(seconds=self.session_duration)
 
         if self.session_duration <= 0:
             return user_id
-        if created_at + timedelta(seconds=self.session_duration) < datetime.now():
+        if created_at + duration_sec < datetime.now():
             return None
         return user_id
