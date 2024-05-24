@@ -10,6 +10,7 @@ from datetime import datetime, timedelta
 class SessionExpAuth(SessionAuth):
     """Session auth class with expiration"""
     def __init__(self):
+        """init"""
         self.session_duration = getenv('SESSION_DURATION')
 
     def create_session(self, user_id=None):
