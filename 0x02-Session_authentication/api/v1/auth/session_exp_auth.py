@@ -11,7 +11,12 @@ class SessionExpAuth(SessionAuth):
     """Session auth class with expiration"""
     def __init__(self):
         """init"""
-        self.session_duration = getenv('SESSION_DURATION')
+        try:
+            self.session_duration = getenv('SESSION_DURATION')
+            if not self.session_duration:
+                self.session_duration = 0
+        except ValueError:
+            self.session_duration = 0
 
     def create_session(self, user_id=None):
         """creating a session aaaaa"""
@@ -35,9 +40,9 @@ class SessionExpAuth(SessionAuth):
 
         created_at = self.user_id_by_session_id[session_id]['created_at']
         user_id = self.user_id_by_session_id[session_id]['user_id']
-        duration_sec = timedelta(seconds=int(self.session_duration))
+        duration_sec = timedelta(seconds=self.session_duration)
 
-        if int(self.session_duration) <= 0:
+        if self.session_duration <= 0:
             return user_id
         if created_at + duration_sec < datetime.now():
             return None
