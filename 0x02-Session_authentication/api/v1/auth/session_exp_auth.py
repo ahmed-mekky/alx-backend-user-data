@@ -13,6 +13,7 @@ class SessionExpAuth(SessionAuth):
         self.session_duration = getenv('SESSION_DURATION')
 
     def create_session(self, user_id=None):
+        """creating a session aaaaa"""
         session_id = super()
         if not session_id:
             return None
@@ -22,6 +23,7 @@ class SessionExpAuth(SessionAuth):
         }
 
     def user_id_for_session_id(self, session_id=None):
+        """same as before but with duration"""
         if not session_id:
             return None
         elif not session_id in self.user_id_by_session_id.keys():
