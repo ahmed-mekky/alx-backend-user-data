@@ -1,15 +1,15 @@
-#!/usr/bin/env python3
-"""User model"""
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
 
 
-class User(db.Model):
-    """Represents a user in the system."""
+Base = declarative_base()
+
+
+class User(Base):
+    """User class"""
     __tablename__ = 'users'
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(250), nullable=False)
-    hashed_password = db.Column(db.String(250), nullable=False)
-    session_id = db.Column(db.String(250), nullable=False)
-    reset_token = db.Column(db.String(250), nullable=False)
+    id = Column(Integer, primary_key=True)
+    email = Column(String(250), nullable=False)
+    hashed_password = Column(String(250), nullable=False)
+    session_id = Column(String(250))
+    reset_token = Column(String(250))
