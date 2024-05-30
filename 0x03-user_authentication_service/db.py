@@ -17,7 +17,7 @@ class DB:
         self._engine = create_engine("sqlite:///a.db", echo=True)
         Base.metadata.drop_all(self._engine)
         Base.metadata.create_all(self._engine)
-        self.__session = sessionmaker(bind=self._engine)()
+        self.__session = None
 
     @property
     def _session(self) -> Session:
@@ -31,6 +31,6 @@ class DB:
     def add_user(self, email: str, hashed_password: str) -> User:
         """adding new user"""
         user = User(email=email, hashed_password=hashed_password)
-        self.__session.add(user)
-        self.__session.commit()
+        self._session.add(user)
+        self._session.commit()
         return user
