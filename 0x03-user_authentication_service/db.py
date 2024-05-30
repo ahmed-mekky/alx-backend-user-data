@@ -36,5 +36,5 @@ class DB:
             self._session.commit()
         except Exception:
             self._session.rollback()
-            return
+            raise
         return user
