@@ -8,7 +8,7 @@ from user import User
 
 my_db = DB()
 
-user_1 = my_db.add_user("test@test.com", "SuperHashedPwd")
+user_1 = my_db.add_user("", None)
 print(user_1.id)
 
 user_2 = my_db.add_user("test1@test.com", "SuperHashedPwd1")
