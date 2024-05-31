@@ -14,10 +14,6 @@ class Auth:
         """init"""
         self._db = DB()
 
-    def _generate_uuid() -> str:
-        """uuids"""
-        return str(uuid4())
-
     def register_user(self, email: str, password: str) -> User:
         """read the function name"""
         try:
@@ -39,3 +35,7 @@ def _hash_password(password: str) -> bytes:
     """security stuff"""
     salt = gensalt(rounds=12)
     return hashpw(password.encode(), salt)
+
+def _generate_uuid() -> str:
+    """uuids"""
+    return str(uuid4())
