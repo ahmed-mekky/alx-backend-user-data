@@ -55,8 +55,6 @@ class DB:
     def update_user(self, user_id: int, **kwargs) -> None:
         """update a user"""
         users = self._session.query(User).filter_by(id=user_id)
-        if not users.all():
-            raise ValueError
         try:
             users.update(kwargs)
         except Exception:
