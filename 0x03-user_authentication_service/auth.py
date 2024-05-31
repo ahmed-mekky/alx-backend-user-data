@@ -14,7 +14,7 @@ class Auth:
         """init"""
         self._db = DB()
 
-    def _generate_uuid():
+    def _generate_uuid() -> str:
         """uuids"""
         return str(uuid4())
 
