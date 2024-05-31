@@ -52,7 +52,7 @@ class DB:
             raise NoResultFound
         return user
 
-    def update_user (self, user_id, **kwargs):
+    def update_user (self, user_id: int, **kwargs):
         """update a user"""
         users = self._session.query(User).filter_by(id=user_id)
         if not users.all():
