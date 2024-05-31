@@ -52,9 +52,12 @@ class DB:
             raise NoResultFound
         return user
 
-    def update_user (self, user_id: int, **kwargs):
+    def update_user(self, user_id: int, **kwargs):
         """update a user"""
         users = self._session.query(User).filter_by(id=user_id)
         if not users.all():
             raise ValueError
-        users.update(kwargs)
+        try:
+            users.update(kwargs)
+        except Exception:
+            raise ValueError
