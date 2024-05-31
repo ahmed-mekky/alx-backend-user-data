@@ -3,6 +3,7 @@
 from bcrypt import hashpw, gensalt, checkpw
 from db import DB
 from user import User
+from uuid import uuid4
 
 
 class Auth:
@@ -12,6 +13,10 @@ class Auth:
     def __init__(self):
         """init"""
         self._db = DB()
+
+    def _generate_uuid():
+        """uuids"""
+        return str(uuid4())
 
     def register_user(self, email: str, password: str) -> User:
         """read the function name"""
