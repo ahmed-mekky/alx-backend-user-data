@@ -64,8 +64,8 @@ class Auth:
             user = self._db.find_user_by(email=email)
         except Exception:
             raise ValueError
-        user.reset_token  = _generate_uuid()
-        return user.reset_token 
+        user.reset_token = _generate_uuid()
+        return user.reset_token
 
 
 def _hash_password(password: str) -> bytes:
