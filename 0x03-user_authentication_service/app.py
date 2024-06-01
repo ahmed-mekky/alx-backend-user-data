@@ -24,7 +24,7 @@ def users():
     return jsonify({"email": email, "message": "user created"})
 
 
-@app.route('/sessions ', methods=['POSt'])
+@app.route('/sessions', methods=['POSt'])
 def login():
     email = request.form.get('email')
     password = request.form.get('password')
