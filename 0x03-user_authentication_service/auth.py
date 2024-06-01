@@ -30,11 +30,21 @@ class Auth:
             return False
         return checkpw(password.encode(), user.hashed_password)
 
+    def create_session(self, email: str) -> str:
+        """create a session"""
+        try:
+            user = self._db.find_user_by(email=email)
+        except Exception:
+            return None
+        user.session_id = _generate_uuid()
+        return user.session_id
+
 
 def _hash_password(password: str) -> bytes:
     """security stuff"""
     salt = gensalt(rounds=12)
     return hashpw(password.encode(), salt)
+
 
 def _generate_uuid() -> str:
     """uuids"""
