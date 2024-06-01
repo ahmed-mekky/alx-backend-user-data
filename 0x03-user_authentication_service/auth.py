@@ -49,6 +49,15 @@ class Auth:
             return None
         return user
 
+    def destroy_session(self, user_id: int):
+        """keep reading the names"""
+        try:
+            user = self._db.find_user_by(id=user_id)
+        except Exception:
+            return None
+        user.session_id = None
+        return user.session_id
+
 
 def _hash_password(password: str) -> bytes:
     """security stuff"""
