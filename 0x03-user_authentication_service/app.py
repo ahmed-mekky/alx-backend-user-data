@@ -10,11 +10,13 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def basic():
+    """random documentation"""
     return jsonify({"message": "Bienvenue"})
 
 
 @app.route('/users', methods=['POSt'])
 def users():
+    """random documentation"""
     email = request.form.get('email')
     password = request.form.get('password')
     try:
@@ -26,6 +28,7 @@ def users():
 
 @app.route('/sessions', methods=['POST'])
 def login():
+    """random documentation"""
     email = request.form.get('email')
     password = request.form.get('password')
 
@@ -40,6 +43,7 @@ def login():
 
 @app.route('/sessions', methods=['DELETE'])
 def logout():
+    """random documentation"""
     session_id = request.cookies.get('session_id')
 
     user = AUTH.get_user_from_session_id(session_id)
@@ -52,6 +56,7 @@ def logout():
 
 @app.route('/profile', methods=['GET'])
 def profile():
+    """random documentation"""
     session_id = request.cookies.get('session_id')
 
     user = AUTH.get_user_from_session_id(session_id)
@@ -62,6 +67,7 @@ def profile():
 
 @app.route('/reset_password', methods=['POST'])
 def reset_password():
+    """random documentation"""
     email = request.form.get('email')
 
     try:
