@@ -58,6 +58,15 @@ class Auth:
         user.session_id = None
         return user.session_id
 
+    def get_reset_password_token(self, email: str) -> str:
+        """i hate this documentation"""
+        try:
+            user = self._db.find_user_by(email=email)
+        except Exception:
+            raise ValueError
+        user.reset_token  = _generate_uuid()
+        return user.reset_token 
+
 
 def _hash_password(password: str) -> bytes:
     """security stuff"""
